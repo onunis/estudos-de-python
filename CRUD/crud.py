@@ -51,3 +51,32 @@ def total_categoria():
                      INNER JOIN categorias ON gastos.id_categoria = categorias.id_categoria
                      GROUP BY categorias.nome
     """).fetchall()
+
+
+def menu():
+    init_db():
+
+    while True:
+        print("\n1 - Adicionar Tarefas")
+        print("\n2 - Listar Categorias")
+        print("\n3 - Adicionar Gastos")
+        print("\n4 - Listar Gastos")
+        print("\n5 - Deletar Gastos")
+        print("\n6 - Total por Categoria")
+
+        opcao = input("\nEscolha: ")
+
+        if opcao == "1":
+            nome = input("Nome da categoria: ")
+            adicionar_categoria(nome)
+            print("categoria adicionada!")
+
+        elif opcao == "2":
+            categorias = listar_categorias()
+            if not categorias:
+                print("Nenhuma categoria encontrada:")
+            else:
+                for id, nome in categorias:
+                    print(f"{id} | {nome}")
+
+    
